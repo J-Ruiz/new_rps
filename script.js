@@ -7,8 +7,9 @@ function computerPlay(){
 
 
 function playerPlay(){
-    let playerSelection = prompt("Select either Rock, Paper or Scissors: ").toLowerCase();   // this prompt is running twice, need to find the fix 
-    if(playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
+    let getInput = prompt("Select either Rock, Paper or Scissors: ").toLowerCase(); 
+    let playerSelection = getInput;  // this prompt is running twice, need to find the fix  
+    if(playerSelection  == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
      return playerSelection;
     }
 
