@@ -6,9 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script> 
+    <script src="script.js" defer></script> 
 </head>
 <body>
-    
+
+    <h1 class="header">Rock, Paper, Scissors</h1>
+
+    <div class="content">
+   <div id="score">
+        <h1>Player Score: 
+            <p id="pScore">0</p>
+        </h1>
+
+        <h1>Computer Score: 
+            <p id="cScore">0</p>
+        </h1>
+    </div>
+
+    <div id="instructions">Select Rock, Paper, or Scissors. Rock beats scissors, Scissors beats paper, Paper Beats Rock. First to 5 points wins!</div>
+    <div>Result</div>
+    <div id="result"></div>
+    <div class = "images">
+        <img src="https://cdn.pixabay.com/photo/2014/07/28/16/06/rock-403774_960_720.jpg">
+        <img src="https://cdn.pixabay.com/photo/2012/05/07/15/43/paper-48639_960_720.png">
+        <img src="https://cdn.pixabay.com/photo/2016/03/31/23/11/scissors-1297454_960_720.png">
+
+    </div>
+
+    <div id="choices">
+        <button id="rock" type="submit">Rock</button>
+        <button id="paper" type="submit">Paper</button>
+        <button id="scissors" type="submit">Scissors</button>
+    </div>
+</div>
+ 
+
 </body>
 </html>

@@ -1,12 +1,13 @@
-function computerPlay() {
-    let computerChoices = ["rock", "paper", "scissor"];
-    let randomNum = Math.floor(Math.random() * (2 - 0 + 1) + 0);
-    return computerChoices[randomNum];
+// have a variable that stores computer wins
+let cScore = 0;
+// have a variable that stores player wins
+let pScore = 0;
+// have a variable that stores ties
+let tScore = 0;
 
-}
 
 
-function playerPlay() {
+/*function playerPlay() {
     let getInput = prompt("Select either Rock, Paper or Scissors: ").toLowerCase();
     let playerSelection = getInput;  // this prompt is running twice, need to find the fix  
     if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
@@ -16,60 +17,71 @@ function playerPlay() {
     else {
         playerPlay();
     }
+}*/
+
+
+function computerPlay() {
+    let computerChoices = ["rock", "paper", "scissors"];
+    let randomNum = Math.floor(Math.random() * (2 - 0 + 1) + 0);
+    
+    return computerChoices[randomNum];
+
 }
 
 
-function roundPlay() {
+
+
+function roundPlay(choice) {
     let c = computerPlay();
-    let p = playerPlay();
+    let p = choice;
     let lose = `You Lose! ${c} beats ${p}`;
     let win = `You Win! ${p} beats ${c}`;
-    let tie = "You tied!";
+    let tie = "Tie! You and the computer selected the same choice!";
     let result = "";
-
+    let resultHTML = document.getElementById('result'); 
     switch (p) {
 
         case "rock":
             if (c == "paper") {
-                alert(lose);
+                resultHTML.textContent = lose;
                 result = "computer";
             }
             else if (c == "scissors") {
-                alert(win);
+                resultHTML.textContent = win;
                 result = "player";
             }
             else {
-                alert(tie)
+                resultHTML.textContent = tie;
                 result = "tie";
             }
             break;
 
         case "paper":
             if (c == "scissors") {
-                alert(lose);
+                resultHTML.textContent = lose;
                 result = "computer";
             }
             else if (c == "rock") {
-                alert(win);
+                resultHTML.textContent = win;
                 result = "player";
             }
             else {
-                alert(tie)
+                resultHTML.textContent = tie;
                 result = "tie";
             }
             break;
 
         case "scissors":
             if (c == "rock") {
-                alert(lose);
+                resultHTML.textContent = lose;
                 result = "computer";
             }
             else if (c == "paper") {
-                alert(win);
+                resultHTML.textContent = win;
                 result = "player";
             }
             else {
-                alert(tie)
+                resultHTML.textContent = tie;
                 result = "tie";
             }
             break;
@@ -81,46 +93,60 @@ function roundPlay() {
 }
 
 
-function game() {
-    // have a variable that stores computer wins
-    let cScore = 0;
-    // have a variable that stores player wins
-    let pScore = 0;
-    // have a variable that stores ties
-    let tScore = 0;
+
+function game(choice) {
+
     // loop for 5 games 
-    while (cScore + pScore + tScore < 5) {
-        let winner = roundPlay();
-        switch (winner) {
-            case "player":
-                pScore += 1;
-                break;
+    // while (cScore + pScore + tScore < 5) {
+    
+    let winner = roundPlay(choice);
+    let pScoreHTML = document.getElementById('pScore');
+    let cScoreHTML = document.getElementById('cScore');
+    
+    switch (winner) {
+        case "player":
+            pScore += 1;
+            pScoreHTML.textContent = pScore;
+            break;
 
-            case "computer":
-                cScore += 1;
-                break;
+        case "computer":
+            cScore += 1;
+            cScoreHTML.textContent = cScore;
+            break;
 
-            default:
-                tScore += 1;
-                break;
+        default:
+            
+            break;
 
+        //}
+
+    }
+
+    if (pScore == 5 || cScore == 5){
+        if(pScore == 5){
+            alert("YOU WIN");
+            pScore = 0;
+            cScore = 0;
+            pScoreHTML.textContent = pScore;  
+            cScoreHTML.textContent = cScore;
         }
-        console.log(`the current score is Computer: ${cScore} versus Player: ${pScore}. There have been ${tScore} ties`)
-    }
-
-    if (pScore > cScore) {
-        alert("Player wins! Computer loses!")
-    }
-    else if (pScore < cScore) {
-        alert("Computer wins! Player loses!")
-    }
-
-    else {
-        alert("It was a tie");
+        else{
+            alert("YOU LOSE");
+            pScore = 0;
+            cScore = 0;
+            pScoreHTML.textContent = pScore;  
+            cScoreHTML.textContent = cScore;
+        }
     }
     return;
 
 }
 
-game();
-//roundPlay();
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        game(button.id);
+    })
+})
+
+
